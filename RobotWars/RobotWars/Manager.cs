@@ -12,13 +12,20 @@ namespace RobotWars
         private Grid _grid;
         private Robot _robot;
 
+        public RobotState ExecuteRobotMoves(int intialX, int initialY, string initialDirection, string robotInstuctions)
+        {
+            // TODO: Validate input
+            InitialiseGrid(GridWidth, GridHeight);
+            InitialiseRobot(intialX, initialY, initialDirection);
+            return _robot.ExecuteMoveInstructions(robotInstuctions, _grid);
+        }
 
-        public void InitializeGrid(int width, int height)
+        private void InitialiseGrid(int width, int height)
         {
             _grid = new Grid(width, height);
         }
 
-        public void InitializeRobot(int intialX, int initialY, string direction)
+        private void InitialiseRobot(int intialX, int initialY, string direction)
         {
             Enum.TryParse(direction, out Direction directionEnum);
 
