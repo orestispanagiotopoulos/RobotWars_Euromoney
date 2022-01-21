@@ -12,32 +12,18 @@ namespace RobotWars.Model
         }
         public RobotState RobotState { get; set; }
 
-        public RobotState ExecuteMoveInstructions(string moves, Grid grid)
-        {
-            foreach (var move in moves)
-            {
-                ExecuteMove(move, grid);
-            }
-            return RobotState;
-        }
-
-        public void GetPositionAndPenalty()
-        {
-
-        }
-
-        private void ExecuteMove(char move, Grid grid)
+        public void Move(MoveTo move, Grid grid)
         {
             switch (move)
             {
-                case 'L':
+                case MoveTo.L:
                     TurnLeft();
                     break;
-                case 'R':
+                case MoveTo.R:
                     TurnRight();
                     break;
-                case 'M':
-                    TryMoveForward(grid);
+                case MoveTo.M:
+                    MoveForward(grid);
                     break;
             }
         }
@@ -52,28 +38,28 @@ namespace RobotWars.Model
             RobotState.Direction = RobotState.Direction == Direction.W ? Direction.N : RobotState.Direction + 1;
         }
 
-        private void TryMoveForward(Grid grid)
+        private void MoveForward(Grid grid)
         {
-            var newPosition = new Point(this.RobotState.Position.X, this.RobotState.Position.Y);
+            var currentPosition = new Point(this.RobotState.Position.X, this.RobotState.Position.Y);
             if (RobotState.Direction == Direction.N)
             {
-                newPosition.Y++;
-                TryMoveForward(grid, newPosition);
+                currentPosition.Y++;
+                TryMoveForward(grid, currentPosition);
             }
             else if (RobotState.Direction == Direction.E)
             {
-                RobotState.Position.X++;
-                TryMoveForward(grid, newPosition);
+                currentPosition.X++;
+                TryMoveForward(grid, currentPosition);
             }
             else if (RobotState.Direction == Direction.S)
             {
-                RobotState.Position.Y--;
-                TryMoveForward(grid, newPosition);
+                currentPosition.Y--;
+                TryMoveForward(grid, currentPosition);
             }
             else if (RobotState.Direction == Direction.W)
             {
-                RobotState.Position.X--;
-                TryMoveForward(grid, newPosition);
+                currentPosition.X--;
+                TryMoveForward(grid, currentPosition);
             }
         }
 
@@ -89,7 +75,7 @@ namespace RobotWars.Model
             }
         }
 
-        bool IsValidRobotPosition(Point position, Grid grid)
+        private bool IsValidRobotPosition(Point position, Grid grid)
         {
             return (position.X > -1 && position.X < grid.Width)
                 && (position.Y > -1 && position.Y < grid.Height);
@@ -121,5 +107,12 @@ namespace RobotWars.Model
         E,
         S,
         W
+    }
+
+    public enum MoveTo
+    {
+        L, // left
+        R, // right
+        M  // Move foreward
     }
 }
