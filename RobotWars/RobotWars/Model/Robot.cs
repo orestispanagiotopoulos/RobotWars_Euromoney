@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using RobotWars.Enums;
 
 namespace RobotWars.Model
 {
@@ -41,25 +39,25 @@ namespace RobotWars.Model
         private void MoveForward(Grid grid)
         {
             var currentPosition = new Point(this.RobotState.Position.X, this.RobotState.Position.Y);
-            if (RobotState.Direction == Direction.N)
+
+            switch(RobotState.Direction)
             {
-                currentPosition.Y++;
-                TryMoveForward(grid, currentPosition);
-            }
-            else if (RobotState.Direction == Direction.E)
-            {
-                currentPosition.X++;
-                TryMoveForward(grid, currentPosition);
-            }
-            else if (RobotState.Direction == Direction.S)
-            {
-                currentPosition.Y--;
-                TryMoveForward(grid, currentPosition);
-            }
-            else if (RobotState.Direction == Direction.W)
-            {
-                currentPosition.X--;
-                TryMoveForward(grid, currentPosition);
+                case Direction.N:
+                    currentPosition.Y++;
+                    TryMoveForward(grid, currentPosition);
+                    break;
+                case Direction.E:
+                    currentPosition.X++;
+                    TryMoveForward(grid, currentPosition);
+                    break;
+                case Direction.S:
+                    currentPosition.Y--;
+                    TryMoveForward(grid, currentPosition);
+                    break;
+                case Direction.W:
+                    currentPosition.X--;
+                    TryMoveForward(grid, currentPosition);
+                    break;
             }
         }
 
@@ -100,19 +98,5 @@ namespace RobotWars.Model
         public int X { get; set; }
 
         public int Y { get; set; }
-    }
-    public enum Direction
-    {
-        N,
-        E,
-        S,
-        W
-    }
-
-    public enum MoveTo
-    {
-        L, // left
-        R, // right
-        M  // Move foreward
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace RobotWars
@@ -8,15 +7,13 @@ namespace RobotWars
     {
         public (List<string> errors, int initX, int initY, string direction) ValidateInitialState(string initialPosition, int gridHeight, int gridWidth)
         {
-            // _validator.ValidateInitialState
             var result = (new List<string>(), -1, -1, string.Empty);
-            // var result = new Tuple<List<string>, int, int, string>(new List<string>(), -1, -1, string.Empty);
 
             var initialPositionArray = initialPosition.Split(',');
 
             if (initialPositionArray.Length != 3)
             {
-                result.Item1.Add("Input is invalid. There should be 2 co-ordinates (x and y) and initial direction");
+                result.Item1.Add("Input is invalid. Three values are expected separated by comma: Two co-ordinates (x and y) and one initial direction");
                 return result;
             }
 
@@ -24,17 +21,19 @@ namespace RobotWars
             if (!int.TryParse(initialPositionArray[0].Trim(), out x))
             {
                 result.Item1.Add("The intial X position of the robot is invalid. The X should be an integer.");
+                return result;
             }
 
             if (!int.TryParse(initialPositionArray[1].Trim(), out y))
             {
                 result.Item1.Add("The intial Y position of the robot is invalid. The Y should be an integer.");
+                return result;
             }
 
             var intialDirection = initialPositionArray[2].Trim();
             if (intialDirection != "N" && intialDirection != "E" && intialDirection != "S" && intialDirection != "W")
             {
-                result.Item1.Add("The intial direction of the robot is invalid. The direction should one of the following char: N, E, S, W");
+                result.Item1.Add("The intial direction of the robot is invalid. The direction should be one of the following char: N, E, S, W");
             }
             result.Item4 = intialDirection;
 
@@ -58,15 +57,16 @@ namespace RobotWars
             var validations = new List<string>();
 
             moves = moves.Trim();
-            int tot = CountMoves(moves, 'M') + CountMoves(moves, 'L') + CountMoves(moves, 'R');
+            // It is allowed to have empty spaces in moves string. They will be ignored
+            int tot = CountChars(moves, 'L') + CountChars(moves, 'R') + CountChars(moves, 'M') + CountChars(moves, ' '); 
             if (tot != moves.Length)
             {
-                validations.Add("Invalid characters in moves input.");
+                validations.Add("There are Invalid characters in moves input.");
             }
             return validations;
         }
 
-        private int CountMoves(string moves, char move)
+        private int CountChars(string moves, char move)
         {
             return moves.ToUpper().Count(m => m == move);
         }

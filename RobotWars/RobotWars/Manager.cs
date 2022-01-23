@@ -1,5 +1,6 @@
-﻿using RobotWars.Model;
-using System;
+﻿using RobotWars.Extentions;
+using RobotWars.Factory;
+using RobotWars.Model;
 using System.Collections.Generic;
 
 namespace RobotWars
@@ -10,23 +11,25 @@ namespace RobotWars
         private const int GridWidth = 5;
 
         private readonly IValidator _validator;
-        public Manager(IValidator vallidator)
+        private readonly IRobotFactory _robotFactory;
+        public Manager(IValidator vallidator, IRobotFactory robotFactory)
         {
             _validator = vallidator;
-        }
-
-        public RobotState ExecuteRobotMoves(int intialX, int initialY, string initialDirection, string robotInstuctions)
-        {
-            var grid = new Grid(GridWidth, GridHeight); 
-            var robot = InitialiseRobot(intialX, initialY, initialDirection);
-            return ExecuteMoveInstructions(robotInstuctions, grid, robot);
+            _robotFactory = robotFactory;
         }
 
         public string GetRobotResult(int intialX, int initialY, string initialDirection, string robotInstuctions)
         {
             var robotState = ExecuteRobotMoves(intialX, initialY, initialDirection, robotInstuctions);
-            var result = $"Position: {robotState.Position.X}, {robotState.Position.Y}, {robotState.Direction}, Penalties: {robotState.PenaltyCount}";
+            var result = $"The Robot's position is: {robotState.Position.X}, {robotState.Position.Y}, {robotState.Direction}, Penalties: {robotState.PenaltyCount}";
             return result;
+        }
+
+        public RobotState ExecuteRobotMoves(int intialX, int initialY, string initialDirection, string robotInstuctions)
+        {
+            var grid = new Grid(GridWidth, GridHeight); 
+            var robot = _robotFactory.CreateRobot(intialX, initialY, initialDirection);
+            return ExecuteMoveInstructions(robotInstuctions, grid, robot);
         }
 
         public (List<string> errors, int initX, int initY, string direction) ValidateInitialState(string startingPosition)
@@ -41,24 +44,19 @@ namespace RobotWars
 
         private RobotState ExecuteMoveInstructions(string moves, Grid grid, Robot robot)
         {
+            moves.GetDirection();
+
             foreach (var move in moves)
             {
-                Enum.TryParse(move.ToString(), out MoveTo moveToEnum);
+                // Allow empty spaces in moves because it is in the requirements (see scenario 3)
+                if (move == ' ')
+                {
+                    continue;
+                }
 
-                robot.Move(moveToEnum, grid);
+                robot.Move(move.ToString().ToUpper().GetMove(), grid);
             }
             return robot.RobotState;
-        }
-
-        private Robot InitialiseRobot(int intialX, int initialY, string direction)
-        {
-            Enum.TryParse(direction, out Direction directionEnum); 
-
-            return new Robot(new RobotState
-            {
-                Position =  new Point(intialX, initialY),
-                Direction = directionEnum
-            });
         }
     }
 }
