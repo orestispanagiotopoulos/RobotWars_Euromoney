@@ -7,7 +7,7 @@ namespace RobotWars.Test
     public class ManagerTest
     {
         [Test]
-        public void ExecuteRobotMoves_WhenScenario1_Success()
+        public void ExecuteRobotMoves_WhenScenario1_ThenCorrectOutput()
         {
             // Arrange
             var manager = new Manager(new Validator(), new RobotFactory());
@@ -23,7 +23,7 @@ namespace RobotWars.Test
         }
 
         [Test]
-        public void ExecuteRobotMoves_WhenSenario2_Success()
+        public void ExecuteRobotMoves_WhenSenario2_ThenCorrectOutput()
         {
             // Arrange
             var manager = new Manager(new Validator(), new RobotFactory());
@@ -39,7 +39,7 @@ namespace RobotWars.Test
         }
 
         [Test]
-        public void ExecuteRobotMoves_WhenScenario3_Success()
+        public void ExecuteRobotMoves_WhenScenario3_ThenCorrectOutput()
         {
             // Arrange
             var manager = new Manager(new Validator(), new RobotFactory());
@@ -55,7 +55,7 @@ namespace RobotWars.Test
         }
 
         [Test]
-        public void ExecuteRobotMoves_When_Scenario4_Success()
+        public void ExecuteRobotMoves_WhenScenario4_ThenCorrectOutput()
         {
             // Arrange
             var manager = new Manager(new Validator(), new RobotFactory());
@@ -71,7 +71,7 @@ namespace RobotWars.Test
         }
 
         [Test]
-        public void ExecuteRobotMoves_When_NoInstructions_Success()
+        public void ExecuteRobotMoves_WhenNoInstructions_ThenCorrectOutput()
         {
             // Arrange
             var manager = new Manager(new Validator(), new RobotFactory());
