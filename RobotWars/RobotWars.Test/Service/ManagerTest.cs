@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
-using RobotWars.Enums;
-using RobotWars.Factory;
+using RobotWars.Model.Enums;
+using RobotWars.Service;
+using RobotWars.Service.Factory;
 
-namespace RobotWars.Test
+namespace RobotWars.Test.Service
 {
     public class ManagerTest
     {

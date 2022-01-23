@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
-using RobotWars.Enums;
 using RobotWars.Model;
+using RobotWars.Model.Enums;
 
 namespace RobotWars.Test.Model
 {
     public class RobotTest
     {
         [Test]
-        public void Move_WhenAllowedToMoveForward_thenSuccesfullyMovedForward()
+        public void Move_WhenAllowedToMoveForward_ThenSuccesfullyMoveForward()
         {
             // Arrange
             var robot = new Robot(new RobotState 

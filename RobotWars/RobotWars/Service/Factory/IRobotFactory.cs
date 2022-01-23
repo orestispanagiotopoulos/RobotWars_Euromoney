@@ -1,6 +1,6 @@
 ﻿using RobotWars.Model;
 
-namespace RobotWars.Factory
+namespace RobotWars.Service.Factory
 {
     public interface IRobotFactory
     {

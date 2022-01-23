@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace RobotWars
+namespace RobotWars.Service
 {
     public class Validator : IValidator
     {
@@ -37,7 +37,7 @@ namespace RobotWars
             }
             result.Item4 = intialDirection;
 
-            if( x < 0 || x > gridHeight - 1)
+            if (x < 0 || x > gridHeight - 1)
             {
                 result.Item1.Add($"The intial X position of the robot is invalid because it is outside of the grid. The Height of the grid is: {gridHeight}");
             }
@@ -58,7 +58,7 @@ namespace RobotWars
 
             moves = moves.Trim();
             // It is allowed to have empty spaces in moves string. They will be ignored
-            int tot = CountChars(moves, 'L') + CountChars(moves, 'R') + CountChars(moves, 'M') + CountChars(moves, ' '); 
+            int tot = CountChars(moves, 'L') + CountChars(moves, 'R') + CountChars(moves, 'M') + CountChars(moves, ' ');
             if (tot != moves.Length)
             {
                 validations.Add("There are Invalid characters in moves input.");

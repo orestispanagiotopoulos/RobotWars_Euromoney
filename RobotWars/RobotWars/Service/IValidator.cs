@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace RobotWars
+namespace RobotWars.Service
 {
-    public interface IValidator 
+    public interface IValidator
     {
         (List<string> errors, int initX, int initY, string direction) ValidateInitialState(string initialPosition, int gridHeight, int gridWidth);
         List<string> ValidateMoves(string moves);

@@ -1,7 +1,7 @@
 ﻿using RobotWars.Extentions;
 using RobotWars.Model;
 
-namespace RobotWars.Factory
+namespace RobotWars.Service.Factory
 {
     public class RobotFactory : IRobotFactory
     {

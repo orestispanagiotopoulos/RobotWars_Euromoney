@@ -1,4 +1,4 @@
-﻿using RobotWars.Enums;
+﻿using RobotWars.Model.Enums;
 
 namespace RobotWars.Model
 {
@@ -8,7 +8,7 @@ namespace RobotWars.Model
         {
             RobotState = robotState;
         }
-        public RobotState RobotState { get; set; }
+        public RobotState RobotState { get; private set; }
 
         public void Move(MoveTo move, Grid grid)
         {
@@ -78,25 +78,5 @@ namespace RobotWars.Model
             return (position.X > -1 && position.X < grid.Width)
                 && (position.Y > -1 && position.Y < grid.Height);
         }
-    }
-
-    public class RobotState
-    {
-        public Point Position { get; set; }
-        public Direction Direction { get; set; }
-        public int PenaltyCount { get; set; } = 0;
-    }
-
-    public class Point
-    {
-        public Point(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace RobotWars.Enums
+﻿namespace RobotWars.Model.Enums
 {
     public enum Direction
     {

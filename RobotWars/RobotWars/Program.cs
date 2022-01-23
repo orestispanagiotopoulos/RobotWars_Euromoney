@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RobotWars.Factory;
+using RobotWars.Service;
+using RobotWars.Service.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace RobotWars
                 return;
             }
 
-            Console.WriteLine("Please enter any number of mars rover moves. 'L' left, 'R' right, 'M' move foreword. (Example:LMMRMLMMM)  Then press Enter:");
+            Console.WriteLine("Please enter any number of mars rover moves. 'L' left, 'R' right, 'M' move forward. (Example:LMMRMLMMM)  Then press Enter:");
             string moves = Console.ReadLine();
             var validationResultMoves = manager.ValidateMoves(moves);
             if (ReportErrors(validationResultMoves))

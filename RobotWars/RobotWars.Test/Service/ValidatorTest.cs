@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using RobotWars.Service;
 
-namespace RobotWars.Test
+namespace RobotWars.Test.Service
 {
     public class ValidatorTest
     {

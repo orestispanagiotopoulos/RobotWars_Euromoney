@@ -1,4 +1,4 @@
-﻿using RobotWars.Enums;
+﻿using RobotWars.Model.Enums;
 using System;
 
 namespace RobotWars.Extentions

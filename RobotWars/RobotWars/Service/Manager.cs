@@ -1,9 +1,9 @@
 ﻿using RobotWars.Extentions;
-using RobotWars.Factory;
 using RobotWars.Model;
+using RobotWars.Service.Factory;
 using System.Collections.Generic;
 
-namespace RobotWars
+namespace RobotWars.Service
 {
     public class Manager
     {
@@ -27,7 +27,7 @@ namespace RobotWars
 
         public RobotState ExecuteRobotMoves(int intialX, int initialY, string initialDirection, string robotInstuctions)
         {
-            var grid = new Grid(GridWidth, GridHeight); 
+            var grid = new Grid(GridWidth, GridHeight);
             var robot = _robotFactory.CreateRobot(intialX, initialY, initialDirection);
             return ExecuteMoveInstructions(robotInstuctions, grid, robot);
         }
