@@ -19,11 +19,11 @@ namespace RobotWars
 
             var manager = new Manager(serviceProvider.GetRequiredService<IValidator>(), serviceProvider.GetRequiredService<IRobotFactory>());
 
-            Console.WriteLine("Please enter 3 values separated by comma. The first two should be integers to specify robots co-ordinates and the third one a char to specify the robot's direction (N, E, S, W). (Example:0,0,N) Then press Enter:");
+            Console.WriteLine("Please enter 3 values separated by comma. The first two should be integers to specify the robot's co-ordinates and the third one a char to specify the robot's direction (N, E, S, W). (Example:0,0,N) Then press Enter:");
             string initialPosition = Console.ReadLine();
-            var validationResultInitilPosition = manager.ValidateInitialState(initialPosition);
+            var validationResultInitialPosition = manager.ValidateInitialState(initialPosition);
 
-            if (ReportErrors(validationResultInitilPosition.errors))
+            if (ReportErrors(validationResultInitialPosition.errors))
             {
                 return;
             }
@@ -37,8 +37,8 @@ namespace RobotWars
             }
 
             Console.WriteLine("");
-            Console.WriteLine(manager.GetRobotResult(validationResultInitilPosition.initX,
-                validationResultInitilPosition.initY, validationResultInitilPosition.direction, moves));
+            Console.WriteLine(manager.GetRobotResult(validationResultInitialPosition.initX,
+                validationResultInitialPosition.initY, validationResultInitialPosition.direction, moves));
 
             Console.WriteLine("");
             Console.WriteLine("Press any key to exit.");
